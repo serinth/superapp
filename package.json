@@ -1,0 +1,27 @@
+{
+  "name": "superapp",
+  "version": "1.0.0",
+  "description": "SuperApp flutter example to build a framework like wechat and meituan miniapps",
+  "main": "miniapp_framework.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "npx parcel miniapp_framework.js && echo built in /dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tony Truong",
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "metro": "^0.59.0",
+    "metro-core": "^0.59.0",
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "lit-element": "^2.3.1",
+    "lit-html": "^1.2.1"
+  }
+}

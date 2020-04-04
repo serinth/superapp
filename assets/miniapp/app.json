@@ -1,0 +1,8 @@
+{
+    "appId": "mapp-xxxyyy",
+    "appName": "My Mini App",
+    "pages": [
+        "pages/index/index"
+    ],
+    "debug": true
+}
