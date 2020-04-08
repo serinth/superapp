@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:superapp/miniapp/jsbridge.dart';
+import 'package:superapp/miniapp/logic_layer/message_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
@@ -10,7 +10,6 @@ class Renderer extends StatefulWidget {
   Renderer({Key key, this.url}): super(key: key);
 
   final String url;
-
   
   @override
   _RenderedViewState createState() => _RenderedViewState();
@@ -30,7 +29,7 @@ class _RenderedViewState extends State<Renderer> {
         _controller.complete(webViewController);
       },
       javascriptChannels: <JavascriptChannel>[
-        callNumberChannel(context),
+        logicMessageHandler(context),
       ].toSet(),
     );
   }

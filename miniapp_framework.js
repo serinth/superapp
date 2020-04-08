@@ -12,7 +12,6 @@ class NativeElement extends LitElement {
   handleClick(e) {
     console.log('--in native--');
     _superapp.callphone();
-    // send event to logic layer here, may request native functionality
   }
 }
 
@@ -42,16 +41,22 @@ class SimpleElement extends LitElement {
 
   handleClick(e) {
     console.log('--in simple--');
-    
+    _superapp.mySDKFunc();
   }
 }
 
 customElements.define('native-element', NativeElement);
 customElements.define('simple-element', SimpleElement);
 
+
+// Core lib that should allow native functionality and callbacks
 var _superapp = {
   callphone: function() {
-    SUPA.postMessage('callmemaybe');
+    SUPA.postMessage('phoneCall');
+  },
+
+  mySDKFunc: function() {
+    SUPA.postMessage('onMyFunc');
   }
 };
 var _page = {};

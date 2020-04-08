@@ -5,18 +5,19 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
 
+// Can plug in direct listener if wanted
 JavascriptChannel callNumberChannel(BuildContext context) {
   return JavascriptChannel(
-    name: 'SUPA',
+    name: 'NATIVE',
     onMessageReceived: (JavascriptMessage message) {
-      _launchCaller();
+      launchCaller();
 
       print(message.message);
     }
   );
 }
 
-Future<Null>_launchCaller() async {
+Future<Null>launchCaller() async {
   const url = "tel:1234567";   
   if (await canLaunch(url)) {
     await launch(url);

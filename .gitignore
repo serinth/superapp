@@ -38,3 +38,8 @@ lib/generated_plugin_registrant.dart
 
 # Node
 node_modules
+
+# Extras
+.cache/
+.vscode
+.idea

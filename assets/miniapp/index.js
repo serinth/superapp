@@ -39,14 +39,7 @@ Page({
       console.log(item.text)
     },
     // Event handler.
-    viewTap: function() {
-      this.setData({
-        text: 'Set some data for updating view.'
-      }, function() {
-        // this is setData callback
-      })
-    },
-    customData: {
-      hi: 'MINA'
+    onMyFunc: function() {
+      return "Custom Page Handler called";
     }
-  })
+  });
