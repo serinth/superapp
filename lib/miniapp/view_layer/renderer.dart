@@ -29,7 +29,7 @@ class _RenderedViewState extends State<Renderer> {
         _controller.complete(webViewController);
       },
       javascriptChannels: <JavascriptChannel>[
-        logicMessageHandler(context),
+        logicMessageHandler(context, _controller),
       ].toSet(),
     );
   }

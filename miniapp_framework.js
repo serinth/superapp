@@ -1,6 +1,8 @@
 
 import { LitElement, html, css } from 'lit-element';
 
+
+// Allowed templates below
 class NativeElement extends LitElement {
 
   render(){
@@ -41,7 +43,11 @@ class SimpleElement extends LitElement {
 
   handleClick(e) {
     console.log('--in simple--');
-    _superapp.mySDKFunc();
+    _superapp.mySDKFunc({target: this, callbackFnName: 'callback'});
+  }
+
+  callback(msg) {
+    this.data = msg;
   }
 }
 
@@ -49,24 +55,29 @@ customElements.define('native-element', NativeElement);
 customElements.define('simple-element', SimpleElement);
 
 
-// Core lib that should allow native functionality and callbacks
+/* Core lib that should allow native functionality and callbacks */
+
+
+// Observer pattern
+document._observer = {
+  listeners: [],
+  registerListener: function(callback) {
+    this.listeners.push(callback);
+  },
+  notify: function(msg) {
+    this.listeners.forEach(cb => cb.target[cb.callbackFnName](msg));
+    this.listeners = [];
+  }
+};
+
+
 var _superapp = {
   callphone: function() {
     SUPA.postMessage('phoneCall');
   },
 
-  mySDKFunc: function() {
+  mySDKFunc: function(callback) {
+    document._observer.registerListener(callback);
     SUPA.postMessage('onMyFunc');
   }
 };
-var _page = {};
-
-// App top level declarations
-function App(params) {
-  _superapp = params;
-}
-
-// receive data from logic layer here
-function Page(params) {
-  _page = params;
-}

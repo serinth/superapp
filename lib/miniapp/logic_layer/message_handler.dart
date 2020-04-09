@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_liquidcore/liquidcore.dart';
 import 'package:flutter/services.dart';
+import 'dart:async';
 
-JavascriptChannel logicMessageHandler(BuildContext context) {
+
+JavascriptChannel logicMessageHandler(BuildContext context, Completer<WebViewController> controller) {
   return JavascriptChannel(
     name: 'SUPA',
     onMessageReceived: (JavascriptMessage message) async {
@@ -18,7 +20,10 @@ JavascriptChannel logicMessageHandler(BuildContext context) {
           // Logic layer needs to run this registered js callback in miniapp/index.js
           print('Response from isolated js code was: $_jsContextResponse');
           // Return this to the renderer to call re-render
-
+          
+          controller.future.then((webviewController){
+            webviewController.evaluateJavascript('document._observer.notify("$_jsContextResponse")');
+          });
         }
         break;
 
