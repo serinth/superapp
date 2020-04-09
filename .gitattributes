@@ -4,7 +4,6 @@
 # Always perform LF normalization on these files
 *.dart   text
 *.gradle text
-*.html   text
 *.java   text
 *.json   text
 *.md     text
@@ -32,3 +31,5 @@
 *.jar    binary
 *.png    binary
 *.zip    binary
+
+*.html linguist-detectable=false
